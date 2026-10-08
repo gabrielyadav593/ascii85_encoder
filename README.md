@@ -26,3 +26,10 @@ alphabets differ.
 
 The only exported names are `encode`, `encodeBare`, `decode`, and the low-level
 `encodeGroups`, `unwrap`, `clean`.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
